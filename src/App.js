@@ -82,7 +82,11 @@ function App() {
   const registrarColaborador = (colaborador) => {
     actualizarColaboradores([...colaboradores, colaborador])
   }
-  //Eliminar colaborador
+  //Registrar Equipo
+  const registrarEquipo = (equipo) => {
+    actualizarEquipos([...equipos, equipo])
+  }
+ 
 
   //Actualizar color de equipo
   const actualizarColor = (color, titulo) => {
@@ -111,7 +115,7 @@ function App() {
       {mostrarFormulario === true ? (
         <Formulario
           registrarColaborador={registrarColaborador}
-          equipos={equipos.map((equipo) => equipo.titulo)}
+          equipos={equipos.map((equipo) => equipo.titulo)} registrarEquipo={registrarEquipo}
         />
       ) : (
         <div></div>
@@ -119,7 +123,7 @@ function App() {
       <MiOrg cambiarMostrar={cambiarMostrar} />
 
       {equipos.map((equipo, index) => (
-        <Equipo actualizarColor={actualizarColor} eliminarColaborador={eliminarColaborador} key={equipo.titulo} datos={equipo} colaboradores={colaboradores.filter(colaborador => colaborador.equipo === equipo.titulo)} />
+        <Equipo actualizarColor={actualizarColor} eliminarColaborador={eliminarColaborador} key={equipo.titulo} datos={equipo} colaboradores={colaboradores.filter(colaborador => colaborador.equipo === equipo.titulo)}  />
       ))}
       <Footer />
     </div>

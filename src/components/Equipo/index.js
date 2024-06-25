@@ -30,7 +30,7 @@ const Equipo = (props) => {
             eliminarColaborador={eliminarColaborador}
             key={index}
             colaborador={colaborador}
-            color={colorPrimario}
+            colorPrimario={colorPrimario}
           />
         ))}
       </div>
