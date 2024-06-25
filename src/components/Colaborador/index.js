@@ -1,18 +1,19 @@
 import "./Colaborador.css"
-import { TiDelete } from "react-icons/ti";
+import { AiFillCloseCircle } from "react-icons/ai"
+
 const Colaborador = (props) => {
-    const {nombre, puesto, foto } = props.colaborador
-    const {eliminarColaborador}=props
+    const { id,nombre, puesto, foto, equipo } = props.colaborador
+    const { colorPrimario, eliminarColaborador } = props
     return <div className="colaborador">
-        <spam onClick={eliminarColaborador}><TiDelete  /></spam>
-        <div className="encabezado" style={{backgroundColor:props.color}}>
-            <img src={foto} alt=""></img>
+        <AiFillCloseCircle className="eliminar" onClick={()=>eliminarColaborador(id)} />
+        <div className="encabezado" style={{ backgroundColor: colorPrimario }}>
+            <img src={foto} alt={nombre} />
         </div>
         <div className="info">
             <h4>{nombre}</h4>
             <h5>{puesto}</h5>
         </div>
-
     </div>
 }
+
 export default Colaborador

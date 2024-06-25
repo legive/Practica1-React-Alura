@@ -2,9 +2,10 @@ import "./Equipo.css";
 import Colaborador from "../Colaborador";
 import hexToRgba from 'hex-to-rgba';
 
+
 const Equipo = (props) => {
   //Destructuracion
-  const { titulo, colorPrimario, colorSecundario } = props.datos;
+  const { titulo, colorPrimario } = props.datos;
   const { colaboradores, eliminarColaborador, actualizarColor } = props;
 
   const obj = {
@@ -12,7 +13,7 @@ const Equipo = (props) => {
   };
 
   const estiloTitulo = { borderColor: colorPrimario };
-  console.log(colaboradores.length);
+  
 
   return colaboradores.length > 0 ? (
       <section className="equipo" style={obj }>
