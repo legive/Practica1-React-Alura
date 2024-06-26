@@ -45,6 +45,7 @@ const {registrarColaborador, registrarEquipo}=props
         <h2>Rellena el formulario para crear el colaborador</h2>
 
         <CampoTexto
+          tipo="text"
           titulo="Nombre"
           placeholder="Ingresar nombre"
           required
@@ -52,6 +53,7 @@ const {registrarColaborador, registrarEquipo}=props
           actualizarValor={actualizarNombre}
         />
         <CampoTexto
+          tipo="text"
           titulo="Puesto"
           placeholder="Ingresar puesto"
           required
@@ -59,6 +61,7 @@ const {registrarColaborador, registrarEquipo}=props
           actualizarValor={actualizarPuesto}
         />
         <CampoTexto
+          tipo="text"
           titulo="Foto"
           placeholder="Ingresa enlace de foto"
           required
@@ -72,6 +75,7 @@ const {registrarColaborador, registrarEquipo}=props
       <form onSubmit={manejarEnvioEquipo}>
         <h2>Rellena el formulario para crear un equipo</h2>
         <CampoTexto
+          tipo="text"
           titulo="Titulo"
           placeholder="Ingresar Titulo"
           required
@@ -79,6 +83,7 @@ const {registrarColaborador, registrarEquipo}=props
           actualizarValor={actualizarTitulo}
         />
         <CampoTexto
+          tipo="color"
           titulo="Color"
           placeholder="Ingresar el color en Hex"
           required

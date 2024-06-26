@@ -1,6 +1,6 @@
 import { useState } from "react";
 //Para crear un identificador unico
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from "uuid";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Formulario from "./components/Formulario/Formulario";
@@ -11,21 +11,22 @@ import Footer from "./components/Footer";
 function App() {
   const [mostrarFormulario, actualizarMostrar] = useState(false);
   const [colaboradores, actualizarColaboradores] = useState([
-
     {
       id: uuid(),
       equipo: "Programación",
       foto: "https://www.shutterstock.com/image-photo/profile-face-young-woman-isolated-260nw-1489575752.jpg",
       nombre: "Leyla Vasquez",
-      puesto: "Instructora de React"
+      puesto: "Instructora de React",
+      fav: true
     },
     {
       id: uuid(),
       equipo: "Front End",
       foto: "https://imagenes.20minutos.es/files/image_640_360/uploads/imagenes/2023/01/20/keyla-soltera-de-la-isla-de-las-tentaciones-6.jpeg",
       nombre: "Keyla Vasquez",
-      puesto: "Instructora de React"
-    }
+      puesto: "Instructora de React",
+      fav: false
+    },
   ]);
   const [equipos, actualizarEquipos] = useState([
     {
@@ -70,52 +71,60 @@ function App() {
       colorPrimario: "#FF8A29",
       colorSecundario: "#FFEEDF",
     },
-  ])
+  ]);
 
   //Ternario-->condicion?seMuestra:noseMuestra
   const cambiarMostrar = () => {
     actualizarMostrar(!mostrarFormulario);
-
   };
 
   //Registrar Colaborador
   const registrarColaborador = (colaborador) => {
-    actualizarColaboradores([...colaboradores, colaborador])
-  }
+    actualizarColaboradores([...colaboradores, colaborador]);
+  };
   //Registrar Equipo
   const registrarEquipo = (equipo) => {
-    actualizarEquipos([...equipos, equipo])
-  }
- 
+    actualizarEquipos([...equipos, equipo]);
+  };
 
   //Actualizar color de equipo
   const actualizarColor = (color, titulo) => {
-
-
     const equiposActualizados = equipos.map((equipo) => {
       if (equipo.titulo === titulo) {
-        equipo.colorPrimario = color
+        equipo.colorPrimario = color;
       }
-      return equipo
-    })
-    actualizarEquipos(equiposActualizados)
-  }
+      return equipo;
+    });
+    actualizarEquipos(equiposActualizados);
+  };
   //Eliminar Colaborador
   const eliminarColaborador = (id) => {
-    console.log("Eliminar ", id)
-    const nuevoColaboradores = colaboradores.filter((colaborador) => colaborador.id !== id)
+    console.log("Eliminar ", id);
+    const nuevoColaboradores = colaboradores.filter(
+      (colaborador) => colaborador.id !== id
+    );
     // console.log(nuevoColaboradores)
-    actualizarColaboradores(nuevoColaboradores)
+    actualizarColaboradores(nuevoColaboradores);
+  };
 
+  const like = (id) => {
+    console.log("like", id)
+    const colaboradoresActualizados = colaboradores.map((colaborador) => {
+      if (colaborador.id === id) {
+        colaborador.fav = !colaborador.fav
+      }
+      return colaborador
+    })
+    actualizarColaboradores(colaboradoresActualizados)
   }
-
   return (
     <div>
       <Header />
       {mostrarFormulario === true ? (
         <Formulario
           registrarColaborador={registrarColaborador}
-          equipos={equipos.map((equipo) => equipo.titulo)} registrarEquipo={registrarEquipo}
+          equipos={equipos.map((equipo) => equipo.titulo)}
+          registrarEquipo={registrarEquipo}
         />
       ) : (
         <div></div>
@@ -123,7 +132,16 @@ function App() {
       <MiOrg cambiarMostrar={cambiarMostrar} />
 
       {equipos.map((equipo, index) => (
-        <Equipo actualizarColor={actualizarColor} eliminarColaborador={eliminarColaborador} key={equipo.titulo} datos={equipo} colaboradores={colaboradores.filter(colaborador => colaborador.equipo === equipo.titulo)}  />
+        <Equipo
+          actualizarColor={actualizarColor}
+          like={like}
+          eliminarColaborador={eliminarColaborador}
+          key={equipo.titulo}
+          datos={equipo}
+          colaboradores={colaboradores.filter(
+            (colaborador) => colaborador.equipo === equipo.titulo
+          )}
+        />
       ))}
       <Footer />
     </div>
